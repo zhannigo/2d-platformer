@@ -2,9 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Common.Enemy.Scripts;
+using Common.Infrastructure.StaticData;
 using UnityEngine;
 
-namespace Common.Infrastructure.StaticData
+namespace Common.Infrastructure.Services
 {
   public class StaticDataService : IStaticDataService
   {

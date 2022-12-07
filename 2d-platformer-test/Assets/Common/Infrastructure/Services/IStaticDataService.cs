@@ -1,7 +1,8 @@
 using System.Threading.Tasks;
 using Common.Enemy.Scripts;
+using Common.Infrastructure.StaticData;
 
-namespace Common.Infrastructure.StaticData
+namespace Common.Infrastructure.Services
 {
   public interface IStaticDataService
   {

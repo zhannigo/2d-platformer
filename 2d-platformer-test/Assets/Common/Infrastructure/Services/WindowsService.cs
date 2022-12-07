@@ -1,8 +1,8 @@
-using System;
+using Common.Infrastructure.UI.Windows;
 using UnityEngine;
 using Zenject;
 
-namespace Common.Infrastructure.Windows
+namespace Common.Infrastructure.Services
 {
   public class WindowsService : MonoBehaviour
   {

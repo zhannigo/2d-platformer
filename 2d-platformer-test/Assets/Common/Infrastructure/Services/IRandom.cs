@@ -1,4 +1,4 @@
-namespace Common.Infrastructure
+namespace Common.Infrastructure.Services
 {
   public interface IRandomService
   {

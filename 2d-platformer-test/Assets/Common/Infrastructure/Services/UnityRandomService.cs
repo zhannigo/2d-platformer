@@ -1,6 +1,6 @@
 using System;
 
-namespace Common.Infrastructure
+namespace Common.Infrastructure.Services
 {
   public class UnityRandomService : Random, IRandomService
   {

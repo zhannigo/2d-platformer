@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Common.Infrastructure
+namespace Common.Infrastructure.Services
 {
   public abstract class InputService : IInputService
   {
@@ -11,33 +11,11 @@ namespace Common.Infrastructure
 
     public abstract Vector2 Axis { get; }
 
-    public bool IsAttackButtonUp() => 
-      SimpleInput.GetButtonDown(AttackButton);
+    public bool IsAttackButtonUp() => SimpleInput.GetButtonDown(AttackButton);
 
-    public bool IsPauseButtonUp() => 
-      SimpleInput.GetButton(PauseButton);
+    public bool IsPauseButtonUp() => SimpleInput.GetButton(PauseButton);
 
     protected static Vector2 SimpleInputAxis() => 
       new Vector2(SimpleInput.GetAxis(Horizontal), SimpleInput.GetAxis(Vertical));
-  }
-  public class MobileInputService : InputService
-  {
-    public override Vector2 Axis => SimpleInputAxis();
-  }
-  public class StandaloneInputService : InputService
-  {
-    public override Vector2 Axis
-    {
-      get
-      {
-        var axis = SimpleInputAxis();
-        if (axis == Vector2.zero)
-          axis = UnityAxis();
-        return axis;
-      }
-    }
-
-    private static Vector2 UnityAxis() => 
-      new Vector2(UnityEngine.Input.GetAxis(Horizontal), UnityEngine.Input.GetAxis(Vertical));
   }
 }

@@ -3,7 +3,7 @@ using Common.Character.Scripts;
 using Common.Enemy.Scripts;
 using UnityEngine;
 
-namespace Common.Infrastructure
+namespace Common.Infrastructure.Services
 {
   public class UnitService
   {
