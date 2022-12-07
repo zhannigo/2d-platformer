@@ -6,7 +6,7 @@ using Common.Infrastructure.StaticData;
 using UnityEngine;
 using Zenject;
 
-namespace Common.Infrastructure
+namespace Common.Infrastructure.Factory
 {
   public class GameFactory : IGameFactory
   {
