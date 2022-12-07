@@ -1,7 +1,7 @@
 using Common.Enemy.Scripts;
 using UnityEngine;
 
-namespace Common.Enviroment
+namespace Common.Infrastructure
 {
   public class SpawnMarker : MonoBehaviour
   {
