@@ -1,7 +1,7 @@
 using Common.Enemy.Scripts;
 using UnityEngine;
 
-namespace Common.Character.Scripts
+namespace Common.Infrastructure.StaticData
 {
   [CreateAssetMenu(fileName = "EnemyData", menuName = "StaticData/EnemyData")]
   public class EnemyData : ScriptableObject
