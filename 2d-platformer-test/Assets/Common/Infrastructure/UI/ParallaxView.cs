@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Common.Enviroment
+namespace Common.Infrastructure.UI
 {
   public class ParallaxView : MonoBehaviour
   {
