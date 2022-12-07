@@ -1,4 +1,7 @@
+using System;
+using System.Collections;
 using Common.Infrastructure;
+using Common.Infrastructure.Services;
 using UnityEngine;
 using Zenject;
 
@@ -6,29 +9,54 @@ namespace Common.Character.Scripts
 {
   public class HeroController : MonoBehaviour
   {
-    public Transform groundCheck;
-    public float groundRadius; // static data
-    public LayerMask whatIsGround; // static data
-    public float runSpeed = 60f; // static data
-    public float jumpForce = 30f; //static data
+    public float runSpeed = 1f;
+    public float jumpForce = 1f;
 
-    private float verticalMove;
+    public event Action IsDead;
+
     private bool isGrounded;
+    private float verticalMove;
     private float horizontalMove;
     private bool _jump;
+    private bool _isDie;
 
-    private Rigidbody2D heroRigidbody;
+    private Hero _hero;
     private HeroMove _heroMove;
     private HeroAttack _heroAttack;
+    private ColliderCheck _collider;
+
     private IInputService _input;
-
+    private UnitService _unitService;
+    
     [Inject]
-    void Construct(IInputService input) => _input = input;
+    public void Construct(IInputService inputService, UnitService units)
+    {
+      _input = inputService;
+      _unitService = units;
+      Init();
+    }
 
-    private void Awake() => heroRigidbody = GetComponent<Rigidbody2D>();
-        
+    private void Init()
+    {
+      _hero = GetComponent<Hero>();
+      _heroMove = GetComponent<HeroMove>();
+      _heroAttack = GetComponent<HeroAttack>();
+      _collider = GetComponent<ColliderCheck>();
+      InitHealth();
+    }
+
+    private void InitHealth()
+    {
+      _hero.ResetHealth();
+      _hero.isHealthChanged += CheckHealth;
+    }
+
     void Update()
     {
+      if (_input == null)
+      {
+        return;
+      }
       horizontalMove = _input.Axis.x * runSpeed;
       verticalMove = _input.Axis.y * jumpForce;
             
@@ -39,19 +67,38 @@ namespace Common.Character.Scripts
 
       if (_input.IsAttackButtonUp())
       {
-        _heroAttack.Attack();
+        string id = _heroAttack.PlayAttack();
+        _unitService.EnemyController?.TakeDamage(id, _heroAttack._attackDamage);
       }
     }
-    private bool IsJumpButtonUp() => _input.Axis.y > 0.1;
+
+    private bool IsJumpButtonUp() => 
+      _input.Axis.y > 0.1 && !_jump;
 
     private void FixedUpdate()
     {
-      _heroMove.Move(heroRigidbody, horizontalMove);
-      isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
+      _heroMove?.Move(horizontalMove);
+      isGrounded = _collider.isGrounded;
       if (_jump)
       {
-        _jump = _heroMove.Jump(heroRigidbody, verticalMove);
+        _jump = _heroMove.Jump(verticalMove);
       }
+    }
+
+    private void CheckHealth()
+    {
+      if (_hero.CurrentPlayerHP <= 0 && !_isDie)
+      {
+        _isDie = true;
+        StartCoroutine(MakeAnimation());
+      }
+    }
+
+    private IEnumerator MakeAnimation()
+    {
+      yield return new WaitForSeconds(1.5f);
+      //animator.PlayDeath();
+      IsDead?.Invoke();
     }
   }
 }

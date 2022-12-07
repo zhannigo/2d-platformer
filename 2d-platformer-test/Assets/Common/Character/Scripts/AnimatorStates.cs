@@ -1,4 +1,4 @@
-namespace Common.Infrastructure
+namespace Common.Character.Scripts
 {
   public enum AnimatorStates
   {
