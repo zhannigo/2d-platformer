@@ -1,4 +1,4 @@
-namespace Common.Infrastructure.Windows
+namespace Common.Infrastructure.UI.Windows
 {
   public enum WindowId
   {

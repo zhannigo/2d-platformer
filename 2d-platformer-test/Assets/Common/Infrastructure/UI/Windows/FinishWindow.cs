@@ -1,9 +1,8 @@
-using Common.Infrastructure.Elements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Common.Infrastructure.Windows
+namespace Common.Infrastructure.UI.Windows
 {
   public class FinishWindow : MonoBehaviour
   {

@@ -1,9 +1,9 @@
-using System;
 using Cinemachine;
+using Common.Infrastructure.Services;
 using UnityEngine;
 using Zenject;
 
-namespace Common.Infrastructure
+namespace Common.Infrastructure.UI
 {
   [RequireComponent(typeof(CinemachineVirtualCamera))]
   public class HeroCatcher : MonoBehaviour

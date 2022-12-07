@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Common.Infrastructure.Elements
+namespace Common.Infrastructure.UI.Elements
 {
   public class QuitButton : MonoBehaviour
   {
