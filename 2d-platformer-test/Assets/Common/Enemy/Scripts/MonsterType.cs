@@ -1,4 +1,4 @@
-namespace Common.Editor
+namespace Common.Enemy.Scripts
 {
   public enum MonsterType
   {

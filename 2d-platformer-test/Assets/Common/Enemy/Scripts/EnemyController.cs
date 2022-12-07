@@ -1,27 +1,26 @@
 using System;
 using System.Collections.Generic;
-using Common.Enemy.Scripts;
+using Common.Character.Scripts;
+using Zenject;
 
-namespace Common.Infrastructure
+namespace Common.Enemy.Scripts
 {
-  public class EnemyController
+  public class EnemyController 
   {
-    private Dictionary<string, EnemyModel> _enemies  = new Dictionary<string, EnemyModel>();
-    private EnemyModel _enemy;
-    public event Action IsGameOver;
+    public Dictionary<string, Enemy> _enemies  = new Dictionary<string, Enemy>();
+    public event Action IsDead;
 
-    public void AddEnemy(string id, EnemyModel enemy)
-    {
+    public void AddEnemy(string id, Enemy enemy) => 
       _enemies.Add(id, enemy);
-    }
 
     public void TakeDamage(string id, int damage)
     {
-      _enemy = _enemies.TryGetValue(id, out EnemyModel enemyModel) ? enemyModel : null;
-      if (_enemy)
+      Enemy enemy = GetEnemy(id);
+      if (enemy)
       {
-        _enemy.TakeDamage(damage);
-        _enemy.isEnemyDead += CheckEnemy;
+        enemy.TakeDamage(damage);
+        _enemies.Remove(id);
+        CheckEnemy();
       }
     }
 
@@ -29,10 +28,15 @@ namespace Common.Infrastructure
     {
       if (_enemies.Count == 0)
       {
-        IsGameOver?.Invoke();
+        IsDead?.Invoke();
       }
-      _enemy.isEnemyDead -= CheckEnemy;
     }
-    
+
+    private Enemy GetEnemy(string id) => 
+      _enemies.TryGetValue(id, out Enemy enemy) ? enemy : null;
+
+    public class Factory : PlaceholderFactory<EnemyController>
+    {
+    }
   }
 }
