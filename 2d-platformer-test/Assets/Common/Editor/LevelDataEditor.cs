@@ -1,6 +1,10 @@
 using System.Linq;
+using Common.Enemy.Scripts;
+using Common.Infrastructure;
+using Common.Infrastructure.StaticData;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Common.Editor
 {
@@ -14,8 +18,10 @@ namespace Common.Editor
       if (GUILayout.Button("Collect"))
       {
         spawnData.Spawners = FindObjectsOfType<SpawnMarker>()
-          .Select(x => new EnemyData(x.monsterType, x.transform.position))
+          .Select(x => new EnemySpawnerData(x.GetComponent<UniqueId>().id, x.monsterType, x.transform.position))
           .ToList();
+        spawnData.LevelKey = SceneManager.GetActiveScene().name;
+        spawnData.StartPoint = FindObjectOfType<StartPoint>().transform.position;
       }
       EditorUtility.SetDirty(target);
     }
