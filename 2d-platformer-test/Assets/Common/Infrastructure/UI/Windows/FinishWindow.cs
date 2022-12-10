@@ -12,6 +12,7 @@ namespace Common.Infrastructure.UI.Windows
     public void OpenWindow()
     {
       gameObject.SetActive(true);
+      Time.timeScale = 0.0f;
       DisplayTime(Time.time);
       _playButton.onClick.AddListener(LoadNewGame);
     }
@@ -22,7 +23,7 @@ namespace Common.Infrastructure.UI.Windows
       _timer.text = string.Format("{0:00},{1:00}",minutes, seconds);
     }
 
-    public void LoadNewGame() => 
+    private void LoadNewGame() => 
       SceneManager.LoadSceneAsync(1);
   }
 }
