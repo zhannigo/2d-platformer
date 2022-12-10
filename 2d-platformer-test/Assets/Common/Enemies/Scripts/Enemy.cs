@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Common.Enemy.Scripts
+namespace Common.Enemies.Scripts
 {
   public class Enemy : MonoBehaviour
   {

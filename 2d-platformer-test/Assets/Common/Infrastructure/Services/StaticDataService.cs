@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Common.Enemy.Scripts;
+using Common.Enemies.Scripts;
 using Common.Infrastructure.StaticData;
 using UnityEngine;
 

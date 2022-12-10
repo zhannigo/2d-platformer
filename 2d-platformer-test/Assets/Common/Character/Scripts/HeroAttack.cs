@@ -1,5 +1,4 @@
-using Common.Enemy.Scripts;
-using Common.Infrastructure;
+using Common.Enemies.Scripts;
 using UnityEngine;
 
 namespace Common.Character.Scripts
@@ -29,7 +28,7 @@ namespace Common.Character.Scripts
       foreach (Collider2D enemy in hitEnemies)
       {
         Debug.Log("We hit" + enemy.name);
-        id = enemy.GetComponent<Enemy.Scripts.Enemy>().Id;
+        id = enemy.GetComponent<Enemy>().Id;
       }
       return id;
     }

@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using Common.Character.Scripts;
-using Common.Enemy.Scripts;
+using Common.Enemies.Scripts;
 using UnityEngine;
 
 namespace Common.Infrastructure.Factory

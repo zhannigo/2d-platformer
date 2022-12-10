@@ -1,6 +1,6 @@
 using System;
 using Common.Character.Scripts;
-using Common.Enemy.Scripts;
+using Common.Enemies.Scripts;
 using UnityEngine;
 
 namespace Common.Infrastructure.Services
@@ -33,11 +33,7 @@ namespace Common.Infrastructure.Services
 
     private void CheckAnother()
     {
-      if (HeroController == null || EnemyController == null)
-      {
-        Debug.Log("not all controllers loaded");
-      }
-      else
+      if (HeroController != null && EnemyController != null)
       {
         Subscribe();
       }

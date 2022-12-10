@@ -6,7 +6,7 @@ namespace Common.Infrastructure.Services
 {
   public class WindowsService : MonoBehaviour
   {
-    [SerializeField]private FinishWindow _finishWindow;
+    [SerializeField] private FinishWindow _finishWindow;
     private UnitService _units;
 
     [Inject]

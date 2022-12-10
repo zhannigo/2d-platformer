@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Common.Enemies.Scripts;
 using Common.Infrastructure.StaticData;
-using Common.Enemy.Scripts;
 using Common.Infrastructure.Factory;
 using Common.Infrastructure.Services;
 using UnityEngine;
@@ -19,7 +19,6 @@ namespace Common.Infrastructure
     private IStaticDataService _staticData;
     private IGameFactory _factory;
     private UnitService _units;
-    private IInputService _input;
 
     [Inject]
     void Construct(IStaticDataService staticData, 
@@ -68,7 +67,7 @@ namespace Common.Infrastructure
     private async Task SpawnEnemy(EnemySpawnerData spawnPoint)
     {
       GameObject enemyPrefab = await _factory.CreateEnemy(spawnPoint._monsterType, spawnPoint.Position, spawnPoint._id);
-      _units.EnemyController.AddEnemy(spawnPoint._id, enemyPrefab.GetComponent<Enemy.Scripts.Enemy>());
+      _units.EnemyController.AddEnemy(spawnPoint._id, enemyPrefab.GetComponent<Enemy>());
     }
 
     private int GetRandomSpawnIndex() => 

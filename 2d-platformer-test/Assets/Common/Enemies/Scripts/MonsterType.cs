@@ -1,4 +1,4 @@
-namespace Common.Enemy.Scripts
+namespace Common.Enemies.Scripts
 {
   public enum MonsterType
   {

@@ -1,8 +1,7 @@
 using Common.Character.Scripts;
-using Common.Infrastructure;
 using UnityEngine;
 
-namespace Common.Enemy.Scripts
+namespace Common.Enemies.Scripts
 {
   public class EnemyAttack : MonoBehaviour
   {

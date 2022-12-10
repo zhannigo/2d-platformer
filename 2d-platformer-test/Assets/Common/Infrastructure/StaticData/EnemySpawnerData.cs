@@ -1,5 +1,5 @@
 using System;
-using Common.Enemy.Scripts;
+using Common.Enemies.Scripts;
 using UnityEngine;
 
 namespace Common.Infrastructure.StaticData

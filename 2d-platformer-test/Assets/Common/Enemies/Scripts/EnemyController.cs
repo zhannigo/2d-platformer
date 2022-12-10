@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Common.Character.Scripts;
 using Zenject;
 
-namespace Common.Enemy.Scripts
+namespace Common.Enemies.Scripts
 {
   public class EnemyController 
   {

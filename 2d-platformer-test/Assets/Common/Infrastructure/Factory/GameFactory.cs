@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using Common.Character.Scripts;
-using Common.Enemy.Scripts;
+using Common.Enemies.Scripts;
 using Common.Infrastructure.Services;
 using Common.Infrastructure.StaticData;
 using UnityEngine;
@@ -35,7 +35,7 @@ namespace Common.Infrastructure.Factory
     {
       EnemyData enemyData = await _staticData.ForEnemy(monsterType);
       var enemy = Object.Instantiate(enemyData.Prefab, at, Quaternion.identity);
-      enemy.GetComponent<Enemy.Scripts.Enemy>().Id = id;
+      enemy.GetComponent<Enemy>().Id = id;
       return enemy;
     }
 

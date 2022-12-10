@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Common.Enemy.Scripts;
+using Common.Enemies.Scripts;
 using Common.Infrastructure.StaticData;
 
 namespace Common.Infrastructure.Services

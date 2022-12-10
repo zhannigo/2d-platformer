@@ -1,5 +1,5 @@
 using Common.Character.Scripts;
-using Common.Enemy.Scripts;
+using Common.Enemies.Scripts;
 using Common.Infrastructure.Factory;
 using Common.Infrastructure.Services;
 using Common.Infrastructure.StaticData;
