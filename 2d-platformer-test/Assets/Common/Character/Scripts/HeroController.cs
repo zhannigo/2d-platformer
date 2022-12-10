@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Common.Infrastructure;
 using Common.Infrastructure.Services;
 using UnityEngine;
 using Zenject;
@@ -9,14 +8,11 @@ namespace Common.Character.Scripts
 {
   public class HeroController : MonoBehaviour
   {
-    public float runSpeed = 1f;
-    public float jumpForce = 1f;
-
     public event Action IsDead;
 
-    private bool isGrounded;
-    private float verticalMove;
-    private float horizontalMove;
+    private float _verticalMove;
+    private float _horizontalMove;
+    private bool _isGrounded;
     private bool _jump;
     private bool _isDie;
 
@@ -53,14 +49,10 @@ namespace Common.Character.Scripts
 
     void Update()
     {
-      if (_input == null)
-      {
-        return;
-      }
-      horizontalMove = _input.Axis.x * runSpeed;
-      verticalMove = _input.Axis.y * jumpForce;
+      _horizontalMove = _input.Axis.x;
+      _verticalMove = _input.Axis.y;
             
-      if (IsJumpButtonUp() && isGrounded)
+      if (IsJumpButtonUp() && _isGrounded)
       {
         _jump = true;
       }
@@ -77,11 +69,15 @@ namespace Common.Character.Scripts
 
     private void FixedUpdate()
     {
-      _heroMove?.Move(horizontalMove);
-      isGrounded = _collider.isGrounded;
+      _heroMove?.Move(_horizontalMove);
+      _isGrounded = _collider.isGrounded;
+      if (_collider.isLava)
+      {
+        StartCoroutine(MakeAnimation());
+      }
       if (_jump)
       {
-        _jump = _heroMove.Jump(verticalMove);
+        _jump = _heroMove.Jump(_verticalMove);
       }
     }
 
@@ -89,13 +85,13 @@ namespace Common.Character.Scripts
     {
       if (_hero.CurrentPlayerHP <= 0 && !_isDie)
       {
-        _isDie = true;
         StartCoroutine(MakeAnimation());
       }
     }
 
     private IEnumerator MakeAnimation()
     {
+      _isDie = true;
       yield return new WaitForSeconds(1.5f);
       //animator.PlayDeath();
       IsDead?.Invoke();
