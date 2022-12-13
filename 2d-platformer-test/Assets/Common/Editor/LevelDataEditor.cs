@@ -7,13 +7,13 @@ using UnityEngine.SceneManagement;
 
 namespace Common.Editor
 {
-  [CustomEditor(typeof(LevelData))]
+  [CustomEditor(typeof(LevelStaticData))]
   public class LevelDataEditor : UnityEditor.Editor
   {
     public override void OnInspectorGUI()
     {
       base.OnInspectorGUI();
-      LevelData spawnData = (LevelData)target;
+      LevelStaticData spawnData = (LevelStaticData)target;
       if (GUILayout.Button("Collect"))
       {
         spawnData.Spawners = FindObjectsOfType<SpawnMarker>()

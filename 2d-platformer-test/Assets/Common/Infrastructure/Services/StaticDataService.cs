@@ -12,34 +12,34 @@ namespace Common.Infrastructure.Services
     private string LevelDataPath = "StaticData/World";
     private string EnemyDataPath = "StaticData/Enemy";
     private string HeroDataPath = "StaticData/Hero/HeroData";
-    private Dictionary<string, LevelData> _levels = new Dictionary<string, LevelData>();
-    private Dictionary<MonsterType, EnemyData> _enemies = new Dictionary<MonsterType, EnemyData>();
-    private HeroData _hero;
+    private Dictionary<string, LevelStaticData> _levels = new Dictionary<string, LevelStaticData>();
+    private Dictionary<MonsterType, EnemyStaticData> _enemies = new Dictionary<MonsterType, EnemyStaticData>();
+    private HeroStaticData _hero;
 
     public void LoadStaticData()
     {
-      _levels = Resources.LoadAll<LevelData>(LevelDataPath)
+      _levels = Resources.LoadAll<LevelStaticData>(LevelDataPath)
         .ToDictionary(x => x.LevelKey, x => x);
-      _enemies = Resources.LoadAll<EnemyData>(EnemyDataPath)
+      _enemies = Resources.LoadAll<EnemyStaticData>(EnemyDataPath)
         .ToDictionary(x => x._monsterType, x => x);
-      _hero = Resources.Load<HeroData>(HeroDataPath);
+      _hero = Resources.Load<HeroStaticData>(HeroDataPath);
     }
 
-    public LevelData ForLevel(string levelName)
+    public LevelStaticData ForLevel(string levelName)
     {
-      return _levels.TryGetValue(levelName, out LevelData levelData)
+      return _levels.TryGetValue(levelName, out LevelStaticData levelData)
         ? levelData
         : null;
     }
 
-    public async Task<EnemyData> ForEnemy(MonsterType enemyType)
+    public async Task<EnemyStaticData> ForEnemy(MonsterType enemyType)
     {
-      return _enemies.TryGetValue(enemyType, out EnemyData staticData)
+      return _enemies.TryGetValue(enemyType, out EnemyStaticData staticData)
         ? staticData
         : null;
     }
 
-    public HeroData ForHero() => 
+    public HeroStaticData ForHero() => 
       _hero;
   }
 }

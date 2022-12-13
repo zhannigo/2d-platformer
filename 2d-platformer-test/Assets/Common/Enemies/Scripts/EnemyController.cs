@@ -1,38 +1,22 @@
 using System;
-using System.Collections.Generic;
 using Zenject;
 
 namespace Common.Enemies.Scripts
 {
   public class EnemyController 
   {
-    public Dictionary<string, Enemy> _enemies  = new Dictionary<string, Enemy>();
-    public event Action IsDead;
-
-    public void AddEnemy(string id, Enemy enemy) => 
-      _enemies.Add(id, enemy);
+    public EnemiesData _enemies;
+    
+    public void Construct(EnemiesData enemies) => 
+      _enemies = enemies;
 
     public void TakeDamage(string id, int damage)
     {
-      Enemy enemy = GetEnemy(id);
-      if (enemy)
+      if (_enemies.CheckEnemy(id))
       {
-        enemy.TakeDamage(damage);
-        _enemies.Remove(id);
-        CheckEnemy();
+        _enemies.GetEnemy(id).TakeDamage(damage);
       }
     }
-
-    private void CheckEnemy()
-    {
-      if (_enemies.Count == 0)
-      {
-        IsDead?.Invoke();
-      }
-    }
-
-    private Enemy GetEnemy(string id) => 
-      _enemies.TryGetValue(id, out Enemy enemy) ? enemy : null;
 
     public class Factory : PlaceholderFactory<EnemyController>
     {

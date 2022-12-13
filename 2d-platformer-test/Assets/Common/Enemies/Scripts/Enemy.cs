@@ -8,6 +8,7 @@ namespace Common.Enemies.Scripts
   {
     public event Action isEnemyDead;
     public string Id { get; set; }
+    private bool Health { get; set; }
 
     public void TakeDamage(int damage)
     {

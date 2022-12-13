@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Common.Infrastructure.StaticData
 {
-  [CreateAssetMenu(fileName = "EnemyData", menuName = "StaticData/EnemyData")]
-  public class EnemyData : ScriptableObject
+  [CreateAssetMenu(fileName = "EnemyStaticData", menuName = "StaticData/EnemyData")]
+  public class EnemyStaticData : ScriptableObject
   {
     public MonsterType _monsterType;
     public GameObject Prefab;

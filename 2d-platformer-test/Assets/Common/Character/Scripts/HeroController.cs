@@ -60,7 +60,10 @@ namespace Common.Character.Scripts
       if (_input.IsAttackButtonUp())
       {
         string id = _heroAttack.PlayAttack();
-        _unitService.EnemyController?.TakeDamage(id, _heroAttack._attackDamage);
+        if ( id != null)
+        {
+         _unitService.EnemyController?.TakeDamage(id, _heroAttack._attackDamage);
+        }
       }
     }
 

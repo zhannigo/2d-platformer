@@ -7,8 +7,8 @@ namespace Common.Infrastructure.Services
   public interface IStaticDataService
   {
     void LoadStaticData();
-    LevelData ForLevel(string levelName);
-    Task<EnemyData> ForEnemy(MonsterType monsterType);
-    HeroData ForHero();
+    LevelStaticData ForLevel(string levelName);
+    Task<EnemyStaticData> ForEnemy(MonsterType monsterType);
+    HeroStaticData ForHero();
   }
 }

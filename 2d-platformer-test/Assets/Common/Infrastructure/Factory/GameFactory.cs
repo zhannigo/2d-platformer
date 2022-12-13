@@ -25,21 +25,26 @@ namespace Common.Infrastructure.Factory
     
     public HeroController CreateHero(string levelName)
     {
-      LevelData levelData = _staticData.ForLevel(levelName);
-      HeroData heroData = _staticData.ForHero();
+      LevelStaticData levelData = _staticData.ForLevel(levelName);
+      HeroStaticData heroData = _staticData.ForHero();
       var controller = _container.InstantiatePrefab(heroData.Prefab, levelData.StartPoint, Quaternion.identity, null);
       return controller.GetComponent<HeroController>();
     }
 
     public async Task<GameObject> CreateEnemy(MonsterType monsterType, Vector3 at, string id)
     {
-      EnemyData enemyData = await _staticData.ForEnemy(monsterType);
+      EnemyStaticData enemyData = await _staticData.ForEnemy(monsterType);
       var enemy = Object.Instantiate(enemyData.Prefab, at, Quaternion.identity);
       enemy.GetComponent<Enemy>().Id = id;
       return enemy;
     }
 
-    public EnemyController CreateEnemyController() => 
-      _enemyControllerFactory.Create();
+    public EnemyController CreateEnemyController()
+    {
+      EnemiesData data = new EnemiesData();
+      EnemyController enemyController = _enemyControllerFactory.Create();
+      enemyController.Construct(data);
+      return enemyController;
+    }
   }
 }

@@ -41,7 +41,7 @@ namespace Common.Infrastructure.Services
 
     private void Subscribe()
     {
-      EnemyController.IsDead += Notify;
+      EnemyController._enemies.IsDead += Notify;
       HeroController.IsDead += Notify;
     }
     

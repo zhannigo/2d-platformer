@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Common.Infrastructure.StaticData
 {
-  [CreateAssetMenu(fileName = "LevelData", menuName = "StaticData/LevelData")]
-  public class LevelData : ScriptableObject
+  [CreateAssetMenu(fileName = "LevelStaticData", menuName = "StaticData/LevelData")]
+  public class LevelStaticData : ScriptableObject
   {
     public string LevelKey;
     public List<EnemySpawnerData> Spawners;

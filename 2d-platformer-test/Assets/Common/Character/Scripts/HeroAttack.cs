@@ -28,7 +28,8 @@ namespace Common.Character.Scripts
       foreach (Collider2D enemy in hitEnemies)
       {
         Debug.Log("We hit" + enemy.name);
-        id = enemy.GetComponent<Enemy>().Id;
+        Enemy component;
+        id = enemy.TryGetComponent<Enemy>(out component) ? component.Id : null;
       }
       return id;
     }

@@ -51,13 +51,13 @@ namespace Common.Infrastructure
       {
         return;
       }
-
+      
       _units.EnemyController = _factory.CreateEnemyController();
       int enemyCount = Random.Range(1, _spawners.Count);
       for (int i = 0; i < enemyCount; i++)
       {
         EnemySpawnerData spawnPoint = _spawners[GetRandomSpawnIndex()];
-        if (!_units.EnemyController._enemies.ContainsKey(spawnPoint._id))
+        if (!_units.EnemyController._enemies.CheckEnemy(spawnPoint._id))
         {
           SpawnEnemy(spawnPoint);
         }
@@ -67,7 +67,7 @@ namespace Common.Infrastructure
     private async Task SpawnEnemy(EnemySpawnerData spawnPoint)
     {
       GameObject enemyPrefab = await _factory.CreateEnemy(spawnPoint._monsterType, spawnPoint.Position, spawnPoint._id);
-      _units.EnemyController.AddEnemy(spawnPoint._id, enemyPrefab.GetComponent<Enemy>());
+      _units.EnemyController._enemies.AddEnemy(spawnPoint._id, enemyPrefab.GetComponent<Enemy>());
     }
 
     private int GetRandomSpawnIndex() => 
