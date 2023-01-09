@@ -14,25 +14,159 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelKey: Main
   Spawners:
-  - _id: Main_9a9483f9-78e8-4de5-9ace-b58d190f58ea
+  - _id: GroundedEnemy_bb15d3d3-bcbd-4daf-87c1-97bf7d5fe740
     _monsterType: 0
-    Position: {x: -57, y: 9.5, z: -0.16838828}
-  - _id: Main_55a2832b-c29e-4107-b01e-cf725403b518
+    Position: {x: 11.429998, y: 15.969999, z: -0.16838828}
+  - _id: GroundedEnemy_05d5915c-6940-47f9-bfdf-6db8a312593e
     _monsterType: 0
-    Position: {x: -50.7, y: -6.9, z: -0.16838828}
-  - _id: Main_e87e2d28-d04b-448a-93de-b07a93418fc4
+    Position: {x: 37.8, y: 5.29, z: -0.16838828}
+  - _id: GroundedEnemy_6e6ea8de-f6fb-454f-baa8-2d205262884a
     _monsterType: 2
-    Position: {x: 2.31, y: 13.14, z: -0.16838828}
-  - _id: Main_652bc6b2-da1a-43db-b3be-95272616a552
-    _monsterType: 2
-    Position: {x: 35.71, y: 5.8, z: -0.16838828}
-  - _id: Main_9b79b717-8ba6-4c24-b431-8b16e296717a
-    _monsterType: 2
-    Position: {x: 33.26, y: -2.33, z: -0.16838828}
-  - _id: Main_651d4a3b-3f5e-4f58-baa5-741364e238e6
+    Position: {x: 33.66, y: -2.2800002, z: -0.16838828}
+  - _id: GroundedEnemy_736e8dd3-132c-44d8-a7b4-38663d14554f
     _monsterType: 0
-    Position: {x: -19.6, y: -12.32, z: -0.16838828}
-  - _id: Main_8de85254-f4f2-4a00-8c0f-f527a9036291
+    Position: {x: 28.64, y: -12.58, z: -0.16838828}
+  - _id: GroundedEnemy_2a11dbfc-0b92-4ed0-bdd3-eccf6120a69a
+    _monsterType: 2
+    Position: {x: 24.21, y: -12.58, z: -0.16838828}
+  - _id: GroundedEnemy_1fc4fa00-efea-4de4-be28-49c6cbb1a5d4
+    _monsterType: 2
+    Position: {x: 6.739998, y: -5.2999997, z: -0.16838828}
+  - _id: GroundedEnemy_1f20b97c-0a3e-437b-a35c-e3ed4343e062
     _monsterType: 0
-    Position: {x: 24.6, y: -12.33, z: -0.16838828}
+    Position: {x: 5.5600014, y: -12.67, z: -0.16838828}
+  - _id: GroundedEnemy_2fcd35df-b436-4ce5-93d5-e4c74891e361
+    _monsterType: 2
+    Position: {x: 0.27999878, y: -12.67, z: -0.16838828}
+  - _id: GroundedEnemy_84b96cf9-16fd-402c-8eaa-ccf4610dbde2
+    _monsterType: 0
+    Position: {x: -49.44, y: -9.09, z: -0.16838828}
+  - _id: GroundedEnemy_9406defe-16a9-44df-aaae-b6b867672b6c
+    _monsterType: 2
+    Position: {x: -34.029995, y: -8.92, z: -0.16838828}
+  - _id: GroundedEnemy_ac01156e-ebed-4d8d-a2fa-c91a0b3d5439
+    _monsterType: 2
+    Position: {x: -29.460003, y: -6.64, z: -0.16838828}
+  - _id: GroundedEnemy_9f02eb99-a6d0-4864-b0aa-148db11275d2
+    _monsterType: 2
+    Position: {x: -19.18, y: -12.42, z: -0.16838828}
+  - _id: FlyightsEnemy_3e849b67-2aa3-468c-9c6d-9ccddc4332e1
+    _monsterType: 3
+    Position: {x: 47.8, y: -3, z: -0.16838828}
+  - _id: Main_ee568112-752d-48f5-af64-720ed3695e97
+    _monsterType: 3
+    Position: {x: 32, y: 9.7, z: -0.16838828}
+  - _id: Main_ad8cc5ea-33d2-48d0-86be-a6cabc9cd692
+    _monsterType: 3
+    Position: {x: 35.6, y: 7.8, z: -0.16838828}
+  - _id: Main_01b8fbdf-bd08-4c7b-a5cb-bfe31de1f798
+    _monsterType: 3
+    Position: {x: 32.14, y: 6.1000004, z: -0.16838828}
+  - _id: Main_afe6918e-1ed0-4192-bc17-e8d52e89a473
+    _monsterType: 3
+    Position: {x: 23.4, y: -1.6, z: -0.16838828}
+  - _id: Main_90a17621-1585-4dc9-9af2-b336fc553715
+    _monsterType: 3
+    Position: {x: 34, y: -8.6, z: -0.16838828}
+  - _id: Main_b1e9538e-ff6a-47dd-98d1-9f74527b7277
+    _monsterType: 3
+    Position: {x: -10.700001, y: -10.3, z: -0.16838828}
+  - _id: Main_805aeae1-0c90-43e2-9188-e0738b866c3b
+    _monsterType: 3
+    Position: {x: 7.869999, y: 11.77, z: -0.16838828}
+  - _id: Main_658c462e-870f-4167-8526-30dcf46ebf99
+    _monsterType: 3
+    Position: {x: 2.1899986, y: 14.5, z: -0.16838828}
+  - _id: Main_607f8d60-6754-4661-9d6b-85d406d33647
+    _monsterType: 3
+    Position: {x: -5.799999, y: 2.6999998, z: -0.16838828}
+  - _id: Main_8f8bc20c-9e09-4bb9-add0-ed36d503a63a
+    _monsterType: 3
+    Position: {x: -46.599995, y: 5.3, z: -0.16838828}
+  - _id: Main_7d43ec3a-d460-47e7-bc83-5a0d6cf8c03b
+    _monsterType: 3
+    Position: {x: -56.599995, y: 9.1, z: -0.16838828}
+  Treasure:
+  - _teasureType: 0
+    Position: {x: 54.590008, y: -7.35, z: 0}
+  - _teasureType: 0
+    Position: {x: -40.959995, y: -15.230001, z: 0}
+  - _teasureType: 0
+    Position: {x: 30.440006, y: -2.729999, z: 0}
+  - _teasureType: 0
+    Position: {x: 3.1900063, y: -6.8299994, z: 0}
+  - _teasureType: 0
+    Position: {x: -40.959995, y: -13.190001, z: 0}
+  - _teasureType: 0
+    Position: {x: -17.549995, y: -2.04, z: 0}
+  - _teasureType: 0
+    Position: {x: -40.959995, y: -11.15, z: 0}
+  - _teasureType: 0
+    Position: {x: 29.000004, y: 5.39, z: 0}
+  - _teasureType: 0
+    Position: {x: -10.499996, y: -14.969999, z: 0}
+  - _teasureType: 3
+    Position: {x: -21.07, y: -2.02, z: 0}
+  - _teasureType: 0
+    Position: {x: 44.280003, y: 5.39, z: 0}
+  - _teasureType: 0
+    Position: {x: -15.029995, y: -16.18, z: 0}
+  - _teasureType: 0
+    Position: {x: -8.089996, y: 5.57, z: 0}
+  - _teasureType: 0
+    Position: {x: 12.700008, y: -11.690001, z: 0}
+  - _teasureType: 0
+    Position: {x: 11.130001, y: 4.61, z: 0}
+  - _teasureType: 3
+    Position: {x: -2.0199966, y: 14.960001, z: 0}
+  - _teasureType: 0
+    Position: {x: 11.040005, y: 8.24, z: 0}
+  - _teasureType: 0
+    Position: {x: 34.940006, y: 11.18, z: 0}
+  - _teasureType: 0
+    Position: {x: 57.91, y: 5.65, z: 0}
+  - _teasureType: 0
+    Position: {x: 55.590008, y: -1.3299999, z: 0}
+  - _teasureType: 0
+    Position: {x: 45.540005, y: -4.9899993, z: 0}
+  - _teasureType: 0
+    Position: {x: -53.889996, y: -3.5799994, z: 0}
+  - _teasureType: 0
+    Position: {x: 10.950008, y: -3.9899993, z: 0}
+  - _teasureType: 0
+    Position: {x: -46.089993, y: -5.02, z: 0}
+  - _teasureType: 0
+    Position: {x: -38.969997, y: -4.9599996, z: 0}
+  - _teasureType: 0
+    Position: {x: 3.2000046, y: -9.030001, z: 0}
+  - _teasureType: 2
+    Position: {x: -50.88, y: -16.14, z: 0}
+  - _teasureType: 3
+    Position: {x: -13.52, y: -2.0699997, z: 0}
+  - _teasureType: 0
+    Position: {x: -42.969997, y: -1.4999995, z: 0}
+  - _teasureType: 0
+    Position: {x: 11.110004, y: 0.2800002, z: 0}
+  - _teasureType: 2
+    Position: {x: 34.100002, y: 15.889999, z: 0}
+  - _teasureType: 3
+    Position: {x: 41.99, y: 5.4, z: 0}
+  - _teasureType: 0
+    Position: {x: 41.300007, y: -8.289999, z: 0}
+  - _teasureType: 0
+    Position: {x: -5.739994, y: -16.27, z: 0}
+  - _teasureType: 0
+    Position: {x: 15.890003, y: -11.73, z: 0}
+  - _teasureType: 2
+    Position: {x: 59.530003, y: -7.9999986, z: 0}
+  - _teasureType: 0
+    Position: {x: 49.730007, y: 7.06, z: 0}
+  - _teasureType: 2
+    Position: {x: 36.3, y: -11.859999, z: 0}
+  - _teasureType: 3
+    Position: {x: 25.05, y: 8.75, z: 0}
+  - _teasureType: 0
+    Position: {x: 36.620007, y: -2.729999, z: 0}
+  - _teasureType: 0
+    Position: {x: -53.959995, y: -6.7599998, z: 0}
   StartPoint: {x: -59.23, y: -5.4, z: 0}

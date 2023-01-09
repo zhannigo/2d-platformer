@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6452a363e79444dbb7415106cdb7adbe, type: 3}
-  m_Name: CaptainData
+  m_Name: EagleData
   m_EditorClassIdentifier: 
-  _monsterType: 2
-  Prefab: {fileID: 949969452672950609, guid: cbe8a7595be314048a3deb7ce451558f, type: 3}
+  _monsterType: 3
+  Prefab: {fileID: 1348820158562622110, guid: 4dfb440fef49e7d47ba6b1209c992bd0, type: 3}
