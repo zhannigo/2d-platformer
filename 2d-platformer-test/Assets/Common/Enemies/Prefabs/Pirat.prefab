@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8489393915691758467}
   - component: {fileID: 874354716127387875}
   - component: {fileID: 7175240292629645891}
+  - component: {fileID: 6237286712018374813}
   m_Layer: 7
   m_Name: Pirat
   m_TagString: Untagged
@@ -157,3 +158,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf5ec6c5d5514b2ab99df2cbab6b4711, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MoveController: {fileID: 6237286712018374813}
+--- !u!114 &6237286712018374813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7013276977199283704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0693def792e94f6db3da903ec8424cc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridSize: 0.5
+  speed: 0.05
+  _leftDistance: 2
+  _upDistance: 0
+  obstacles:
+    serializedVersion: 2
+    m_Bits: 0
+  searchShortcut: 0
+  snapToGrid: 0
+  pathLeftToGo: []

@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Timeline;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Common.Infrastructure.UI.Windows
 {
@@ -9,11 +11,18 @@ namespace Common.Infrastructure.UI.Windows
     [SerializeField] private Text _timer;
     [SerializeField] private Button _playButton;
 
+    private ITimeCounter _timeCounter;
+
+    [Inject]
+    public void Construct(ITimeCounter timeCounter) => 
+      _timeCounter = timeCounter;
+
     public void OpenWindow()
     {
       gameObject.SetActive(true);
-      Time.timeScale = 0.0f;
-      DisplayTime(Time.time);
+      _timeCounter.StopGame(true);
+      float bestTime = _timeCounter.UpdateBestTime();
+      DisplayTime(bestTime);
       _playButton.onClick.AddListener(LoadNewGame);
     }
     void DisplayTime(float timeToDisplay)

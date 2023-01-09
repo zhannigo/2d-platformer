@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Zenject;
+using System.Linq;
+using UnityEngine.Events;
 
 namespace Common.Enemies.Scripts
 {
@@ -11,7 +12,7 @@ namespace Common.Enemies.Scripts
     public void AddEnemy(string id, Enemy enemy)
     {
       _enemies.Add(id, enemy);
-      enemy.isEnemyDead += delegate { RemoveEnemy(id); };
+      enemy.isEnemyDead += RemoveEnemy;
     }
 
     public bool CheckEnemy(string id) => 
@@ -20,12 +21,16 @@ namespace Common.Enemies.Scripts
     public Enemy GetEnemy(string id) => 
       _enemies.TryGetValue(id, out Enemy enemy) ? enemy : null;
 
+    public List<Enemy> GetAllEnemies => _enemies.Values.ToList();
+
+    public Dictionary<string, Enemy>.ValueCollection AllEnemy() => 
+      _enemies.Values;
+
     private void RemoveEnemy(string id)
     {
       _enemies.Remove(id);
       CheckEnemiesCount();
     }
-
     private void CheckEnemiesCount()
     {
       if (_enemies.Count == 0)

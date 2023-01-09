@@ -21,6 +21,9 @@ namespace Common.Editor
           .ToList();
         spawnData.LevelKey = SceneManager.GetActiveScene().name;
         spawnData.StartPoint = FindObjectOfType<StartPoint>().transform.position;
+        spawnData.Treasure = FindObjectsOfType<SpawnTreasureMarker>()
+          .Select(x => new TreasureSpawnerData(x.TreasureType, x.transform.position))
+          .ToList();
       }
       EditorUtility.SetDirty(target);
     }
