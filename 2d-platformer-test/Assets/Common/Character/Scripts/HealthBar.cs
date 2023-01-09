@@ -6,5 +6,10 @@ namespace Common.Character.Scripts
     {
       throw new System.NotImplementedException();
     }
+
+    public void SetMaxHealth(int maxPlayerHp)
+    {
+      throw new System.NotImplementedException();
+    }
   }
 }

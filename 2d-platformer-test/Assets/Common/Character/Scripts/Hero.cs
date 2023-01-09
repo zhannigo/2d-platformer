@@ -5,36 +5,31 @@ namespace Common.Character.Scripts
 {
   public class Hero : MonoBehaviour
   {
-    public event Action isHealthChanged;
-    
-    private HealthBar healthBar;
+    public event Action IsHealthChanged;
 
-    private int _currentPlayerHP;
-    private int _maxPlayerHP;
+    private int _currentPlayerHp;
+    public int _maxPlayerHP;
 
-    public int CurrentPlayerHP
+    public int _attackDamage;
+
+    public float _runSpeed = 6;
+    public float _jumpForce = 2;
+
+    public int CurrentPlayerHp
     {
-      get => _currentPlayerHP;
-
-      set
-      {
-        Debug.Log($"{value}, {_currentPlayerHP}");
-        _currentPlayerHP = _currentPlayerHP >= 0 ? value : 0;
-      }
+      get => _currentPlayerHp;
+      set => _currentPlayerHp = _currentPlayerHp >= 0 ? value : 0;
     }
 
-    public void ResetHealth()
-    {
-      //healthBar.SetMaxHealth(_maxPlayerHP);
-      CurrentPlayerHP = _maxPlayerHP;
-    }
+    public void ResetHealth() => 
+      CurrentPlayerHp = _maxPlayerHP;
 
     public void TakeDamage(int damage)
     {
-      if (CurrentPlayerHP > 0)
+      if (CurrentPlayerHp > 0)
       {
-        CurrentPlayerHP -= damage;
-        isHealthChanged?.Invoke();
+        CurrentPlayerHp -= damage;
+        IsHealthChanged?.Invoke();
       }
     }
   }
