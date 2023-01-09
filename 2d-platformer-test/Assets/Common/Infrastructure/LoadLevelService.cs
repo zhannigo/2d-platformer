@@ -1,16 +1,19 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Common.Character.Scripts;
 using Common.Enemies.Scripts;
+using Common.Infrastructure.Data;
 using Common.Infrastructure.StaticData;
 using Common.Infrastructure.Factory;
 using Common.Infrastructure.Services;
+using Common.Infrastructure.UI.Elements;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
 
 namespace Common.Infrastructure
 { 
-  public class SpawnService 
+  public class LoadLevelService 
   {
     private string levelName = "Main";
     private List<EnemySpawnerData> _spawners;
@@ -19,29 +22,48 @@ namespace Common.Infrastructure
     private IStaticDataService _staticData;
     private IGameFactory _factory;
     private UnitService _units;
+    private static IPersistentProgressService _progressService;
+    private static ISaveLoadService _saveLoadService;
 
     [Inject]
     void Construct(IStaticDataService staticData, 
-      IRandomService randomService, IGameFactory factory, UnitService unitService)
+      IRandomService randomService, IGameFactory factory, UnitService unitService,
+      IPersistentProgressService progressService, ISaveLoadService saveLoadService)
     {
       _staticData = staticData;
       _random = randomService;
       _factory = factory;
       _units = unitService;
+      _progressService = progressService;
+      _saveLoadService = saveLoadService;
+      LoadLevel();
+    }
+
+    private void LoadLevel()
+    {
       _staticData.LoadStaticData();
+      LoadOrCreateNewProgress();
+      LoadTreasure();
       LoadUnits();
+    }
+
+    private static void LoadOrCreateNewProgress() => 
+      _progressService.Progress = _saveLoadService.LoadProgress() ?? new PlayerProgress();
+
+    private void LoadTreasure()
+    {
+      var treasures = _staticData.ForLevel(levelName).Treasure;
+      foreach (TreasureSpawnerData treasure in treasures)
+      {
+        _factory.SpawnTreasure(treasure._teasureType, treasure.Position);
+      }
     }
 
     private void LoadUnits()
     {
       SpawnEnemies();
-      SpawnHero();
-    }
-
-    private void SpawnHero()
-    {
-      var controller= _factory.CreateHero(levelName);
-      _units.HeroController = controller;
+      GameObject hud = _factory.CreateHud();
+      SpawnHero(hud);
     }
 
     private void SpawnEnemies()
@@ -62,6 +84,14 @@ namespace Common.Infrastructure
           SpawnEnemy(spawnPoint);
         }
       }
+    }
+
+    private void SpawnHero(GameObject hud)
+    {
+      var controller= _factory.CreateHero(levelName);
+      _units.HeroController = controller;
+      var hpBar = hud.GetComponentInChildren<HpBar>();
+      controller.Init(new HeroUI(hpBar));
     }
 
     private async Task SpawnEnemy(EnemySpawnerData spawnPoint)

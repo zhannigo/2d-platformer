@@ -1,3 +1,4 @@
+using Common.Infrastructure.Data;
 using Common.Infrastructure.Services;
 using UnityEngine;
 using Zenject;

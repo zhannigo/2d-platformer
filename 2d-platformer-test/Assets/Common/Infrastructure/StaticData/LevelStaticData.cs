@@ -8,6 +8,7 @@ namespace Common.Infrastructure.StaticData
   {
     public string LevelKey;
     public List<EnemySpawnerData> Spawners;
+    public List<TreasureSpawnerData> Treasure;
     public Vector3 StartPoint;
   }
 }
