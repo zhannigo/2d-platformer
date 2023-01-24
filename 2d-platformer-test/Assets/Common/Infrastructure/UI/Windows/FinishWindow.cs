@@ -10,16 +10,18 @@ namespace Common.Infrastructure.UI.Windows
   {
     [SerializeField] private Text _timer;
     [SerializeField] private Button _playButton;
+    [SerializeField] private AudioSource ButtonClickSound;
 
     private ITimeCounter _timeCounter;
-
-    [Inject]
-    public void Construct(ITimeCounter timeCounter) => 
-      _timeCounter = timeCounter;
-
-    public void OpenWindow()
+    
+    public void Construct(ITimeCounter timeCounter)
     {
-      gameObject.SetActive(true);
+      _timeCounter = timeCounter;
+      Init();
+    }
+
+    private void Init()
+    {
       _timeCounter.StopGame(true);
       float bestTime = _timeCounter.UpdateBestTime();
       DisplayTime(bestTime);
@@ -32,7 +34,10 @@ namespace Common.Infrastructure.UI.Windows
       _timer.text = string.Format("{0:00},{1:00}",minutes, seconds);
     }
 
-    private void LoadNewGame() => 
-      SceneManager.LoadSceneAsync(1);
+    private void LoadNewGame()
+    {
+      ButtonClickSound.Play();
+      SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+    }
   }
 }

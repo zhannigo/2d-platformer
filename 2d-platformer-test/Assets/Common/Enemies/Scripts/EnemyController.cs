@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace Common.Enemies.Scripts
 {
   public class EnemyController 
@@ -11,11 +9,18 @@ namespace Common.Enemies.Scripts
 
     public void Initialize()
     {
-      EventManager.OnChangedState += UpdateState;
+      EnemyEventManager.OnChangedState += UpdateState;
+      EnemyEventManager.OnHeroLost += ReturnToWay;
+      EnemyEventManager.OnHeroFounded += MoveToHero;
       foreach (Enemy enemy in _enemies.AllEnemy())
       {
         UpdateState(enemy);
       }
+    }
+
+    private void ReturnToWay(Enemy enemy)
+    {
+      enemy.MoveController.ReturnToTheWay();
     }
 
     private void UpdateState(Enemy enemy)
@@ -23,7 +28,7 @@ namespace Common.Enemies.Scripts
       switch (enemy.State)
         {
           case EnemyState.Idle:
-            CheckDirection(enemy);
+            ChangeStateToMove(enemy);
             break;
           case EnemyState.Move:
             Move(enemy);
@@ -38,25 +43,40 @@ namespace Common.Enemies.Scripts
 
     private void Attack(Enemy enemy)
     {
-      throw new System.NotImplementedException();
+      enemy.MoveController.MoveOff();
+      enemy.EnemyAnimator.SetTrigger("Attack");
+      enemy.AttackSound.Play();
     }
 
     private void Move(Enemy enemy)
     {
-      enemy.MoveController.MoveOn();
+      enemy.MoveController.MoveOn(enemy.EnemyAnimator);
     }
 
-    private void CheckDirection(Enemy enemy)
+    private void MoveToHero(Enemy enemy)
     {
-      enemy.State = EnemyState.Move;
+      enemy.MoveController.MoveOff();
+      var hero = enemy.HeroTrasform;
+      enemy.MoveController.MoveTo(hero);
     }
+
+    private void ChangeStateToMove(Enemy enemy) => 
+      enemy.State = EnemyState.Move;
 
     public void TakeDamage(string id, int damage)
     {
       if (_enemies.CheckEnemy(id))
       {
-        _enemies.GetEnemy(id).TakeDamage(damage);
+        var enemy = _enemies.GetEnemy(id);
+        enemy.TakeDamage(damage);
+        enemy.MoveController.MoveOff();
+        enemy.IsEnemyDead += Dead;
       }
+    }
+
+    private void Dead(Enemy enemy, string id)
+    {
+      enemy.IsEnemyDead -= Dead;
     }
   }
 }

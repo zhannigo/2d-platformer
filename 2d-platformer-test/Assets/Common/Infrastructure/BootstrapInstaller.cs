@@ -9,7 +9,7 @@ namespace Common.Infrastructure
   {
     public override void InstallBindings()
     {
-      if (Application.isEditor)
+      if (Application.platform == RuntimePlatform.WindowsEditor)
       {
         Container.Bind<IInputService>().To<StandaloneInputService>().AsSingle();
       }

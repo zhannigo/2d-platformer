@@ -1,18 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine.Events;
 
 namespace Common.Enemies.Scripts
 {
   public class EnemiesData
   {
     private readonly Dictionary<string, Enemy> _enemies  = new Dictionary<string, Enemy>();
-    public event Action IsDead;
+    public event Action IsAllEnemyDead;
     public void AddEnemy(string id, Enemy enemy)
     {
       _enemies.Add(id, enemy);
-      enemy.isEnemyDead += RemoveEnemy;
+      enemy.IsEnemyDead += RemoveEnemy;
     }
 
     public bool CheckEnemy(string id) => 
@@ -26,7 +25,7 @@ namespace Common.Enemies.Scripts
     public Dictionary<string, Enemy>.ValueCollection AllEnemy() => 
       _enemies.Values;
 
-    private void RemoveEnemy(string id)
+    private void RemoveEnemy(Enemy enemy, string id)
     {
       _enemies.Remove(id);
       CheckEnemiesCount();
@@ -35,7 +34,7 @@ namespace Common.Enemies.Scripts
     {
       if (_enemies.Count == 0)
       {
-        IsDead?.Invoke();
+        IsAllEnemyDead?.Invoke();
       }
     }
   }

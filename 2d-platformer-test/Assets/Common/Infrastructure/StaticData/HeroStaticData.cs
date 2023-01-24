@@ -6,5 +6,6 @@ namespace Common.Infrastructure.StaticData
   public class HeroStaticData : ScriptableObject
   {
     public GameObject Prefab;
+    public int MaxHp;
   }
 }

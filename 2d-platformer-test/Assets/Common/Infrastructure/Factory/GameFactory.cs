@@ -30,7 +30,8 @@ namespace Common.Infrastructure.Factory
     {
       LevelStaticData levelData = _staticData.ForLevel(levelName);
       HeroStaticData heroData = _staticData.ForHero();
-      var controllerObject = _container.InstantiatePrefab(heroData.Prefab, levelData.StartPoint, Quaternion.identity, null);
+      GameObject controllerObject = _container.InstantiatePrefab(heroData.Prefab, levelData.StartPoint, Quaternion.identity, null);
+      controllerObject.GetComponent<Hero>().Construct(heroData.MaxHp);
       HeroController controller = controllerObject.GetComponent<HeroController>();
       return controller;
     }

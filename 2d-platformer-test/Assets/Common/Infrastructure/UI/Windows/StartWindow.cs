@@ -1,13 +1,14 @@
 using Common.Infrastructure.Services;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
 namespace Common.Infrastructure.UI.Windows
 {
   public class StartWindow : MonoBehaviour
   {
     [SerializeField] private Button _playButton;
+    [SerializeField] private AudioSource ButtonClickSound;
+    [SerializeField] private AudioSource closeWindowSound;
     private ITimeCounter _timeCounter;
     private UnitService _units;
 
@@ -25,8 +26,12 @@ namespace Common.Infrastructure.UI.Windows
 
     private void CloseWindow()
     {
+      ButtonClickSound.Play();
+      
       _timeCounter.StopGame(false);
       _units.EnemyController.Initialize();
+      closeWindowSound.Play();
+      
       gameObject.SetActive(false);
     }
   }

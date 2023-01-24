@@ -9,13 +9,8 @@ namespace Common.Character.Scripts
   public class HeroController : MonoBehaviour
   {
     public event Action IsDead;
-
-    private float _verticalMove;
+    
     private float _horizontalMove;
-    private bool _isGrounded;
-    private bool _canJump;
-    private bool _jump;
-    private bool _doubleJump;
     private bool _canDoubleJump;
     private bool _isDie;
 
@@ -23,11 +18,13 @@ namespace Common.Character.Scripts
     private HeroMove _heroMove;
     private HeroAttack _heroAttack;
     private ColliderCheck _collider;
-
+    public AnimatorController _heroAnimator;
+    
     private HeroUI _heroUI;
     private IInputService _input;
     private UnitService _unitService;
     private int _jumpCount;
+    private Ray _enemyRay;
 
     [Inject]
     public void Construct(IInputService inputService, UnitService units)
@@ -43,25 +40,29 @@ namespace Common.Character.Scripts
       _heroMove = GetComponent<HeroMove>();
       _heroAttack = GetComponent<HeroAttack>();
       _collider = GetComponent<ColliderCheck>();
+      _heroAnimator = GetComponent<AnimatorController>();
+      
       InitHealth();
     }
 
     private void InitHealth()
     {
       _hero.ResetHealth();
-      _heroUI.UpdateBar(_hero.CurrentPlayerHp, _hero._maxPlayerHP);
       _hero.IsHealthChanged += CheckHealth;
     }
-
+    
     void Update()
     {
-      if (_collider.isLava)
+      if (!_isDie)
       {
-        StartCoroutine(HeroDies());
-      }
+        if (_collider.isLava)
+        {
+          StartCoroutine(HeroDies());
+        }
 
-      ReadInput();
-      Attack();
+        ReadInput();
+        TryAttack();
+      }
     }
 
     private void ReadInput()
@@ -80,6 +81,7 @@ namespace Common.Character.Scripts
 
       _horizontalMove = _input.Axis.x;
     }
+    
 
     private void FixedUpdate()
     {
@@ -99,19 +101,28 @@ namespace Common.Character.Scripts
       }
     }
 
-    private void Attack()
+    public void TakeDamage(int damage)
     {
-      Collider2D[] enemies = _collider.GetEnemies();
-      if (enemies != null && _input.IsAttackButtonUp())
+      _hero.TakeDamage(damage, _heroAnimator);
+    }
+    private void TryAttack()
+    {
+      if (_input.IsAttackButtonUp())
       {
-        string id = _heroAttack.GetHitableEnemyIds(enemies);
-        _unitService.EnemyController?.TakeDamage(id, _hero._attackDamage);
+        if (!_heroAnimator.IsAttacking)
+        {
+          _heroAnimator.PlayAttack();
+        }
+        if (_collider.GetEnemies() != null)
+        {
+          _heroAttack.Attack(_collider.GetEnemies(), _unitService.EnemyController, _hero._attackDamage);
+        }
       }
     }
 
     private void CheckHealth()
     {
-      _heroUI.UpdateBar(_hero.CurrentPlayerHp, _hero._maxPlayerHP);
+      _heroUI.UpdateBar(_hero.CurrentPlayerHp, _hero.MaxPlayerHp);
       if (_hero.CurrentPlayerHp <= 0 && !_isDie)
       {
         StartCoroutine(HeroDies());
@@ -121,13 +132,13 @@ namespace Common.Character.Scripts
     private IEnumerator HeroDies()
     {
       _isDie = true;
-      //animator.PlayDeath();
-      yield return new WaitForSeconds(1.5f);
+      _heroAnimator.PlayDeath();
+      yield return new WaitForSeconds(1f);
       IsDead?.Invoke();
     }
 
     private bool IsJumpButtonDown() =>
       _input.Axis.y > 0.5 && _jumpCount == 0;
-
+    
   }
 }

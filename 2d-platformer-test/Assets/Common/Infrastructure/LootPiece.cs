@@ -8,9 +8,10 @@ namespace Common.Infrastructure
 {
   public class LootPiece: MonoBehaviour
   {
-    public GameObject _lootObject;
-    public GameObject PickUpFx;
-    public int _lootValue;
+    [SerializeField] private GameObject _lootObject;
+    [SerializeField] private int _lootValue;
+    [SerializeField] private GameObject PickUpFx;
+    [SerializeField] private AudioSource PickUpSound;
 
     private bool _picked;
     private IPersistentProgressService _progressService;
@@ -19,8 +20,13 @@ namespace Common.Infrastructure
     public void Contruct(IPersistentProgressService progressService) => 
       _progressService = progressService;
 
-    private void OnTriggerEnter2D(Collider2D other) => 
-      PickUp();
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+      if (other.gameObject.tag == "Player")
+      {
+        PickUp();
+      }
+    }
 
     private void PickUp()
     {
@@ -30,21 +36,23 @@ namespace Common.Infrastructure
       
       UpdateWorldData();
       HideLoot();
-      //PlayFx();
+      PlayFx();
       StartCoroutine(StartDestroyTime());
     }
 
     private void UpdateWorldData()
     {
       _progressService.Progress.WorldData.LootData.Add(_lootValue);
-      Debug.Log(_progressService.Progress.WorldData.LootData.Collected);
     }
 
     private void HideLoot() => 
       _lootObject.SetActive(false);
 
-    private void PlayFx() => 
-      Instantiate(PickUpFx, transform.position, Quaternion.identity, gameObject.transform);
+    private void PlayFx()
+    {
+      PickUpSound.Play();
+      //Instantiate(PickUpFx, transform.position, Quaternion.identity, gameObject.transform);
+    }
 
     private IEnumerator StartDestroyTime()
     {

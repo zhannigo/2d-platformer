@@ -1,33 +1,19 @@
 using Common.Enemies.Scripts;
+using Common.Infrastructure.Services;
 using UnityEngine;
 
 namespace Common.Character.Scripts
 {
-  [RequireComponent(typeof(AnimatorController))]
   public class HeroAttack : MonoBehaviour
   {
-    private AnimatorController _animator;
-
-    public void Awake() => 
-      _animator = GetComponent<AnimatorController>();
-
-    public string GetHitableEnemyIds(Collider2D[] hitEnemies)
+    public void Attack(Collider2D[] enemies, EnemyController enemyController, int damage)
     {
-      if (!_animator.IsAttacking)
+      foreach (Collider2D enemy in enemies)
       {
-        _animator.PlayAttack();
+        var id = enemy.TryGetComponent(out Enemy component) ? component.Id : null;
+        enemyController.TakeDamage(id, damage);
       }
-      
-      string id = null;
-      foreach (Collider2D enemy in hitEnemies)
-      {
-        Debug.Log("We hit" + enemy.name);
-        Enemy component;
-        id = enemy.TryGetComponent(out component) ? component.Id : null;
-      }
-      return id;
     }
   }
-  
 }
   

@@ -159,6 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveController: {fileID: 6370311308322508945}
+  Damage: 1
 --- !u!114 &6370311308322508945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,13 +172,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0693def792e94f6db3da903ec8424cc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: 0.5
-  speed: 0.05
+  gridSize: 1
+  speed: 0.35
   _leftDistance: 2
   _upDistance: 0
   obstacles:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   searchShortcut: 0
   snapToGrid: 0
   pathLeftToGo: []
+  pathToHeroGo: []

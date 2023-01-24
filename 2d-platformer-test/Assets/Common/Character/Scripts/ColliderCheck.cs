@@ -1,3 +1,5 @@
+using System;
+using Common.Enemies.Scripts;
 using UnityEngine;
 
 namespace Common.Character.Scripts

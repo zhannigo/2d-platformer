@@ -94,7 +94,7 @@ namespace Common.Infrastructure
       controller.Init(new HeroUI(hpBar));
     }
 
-    private async Task SpawnEnemy(EnemySpawnerData spawnPoint)
+    private async void SpawnEnemy(EnemySpawnerData spawnPoint)
     {
       GameObject enemyPrefab = await _factory.CreateEnemy(spawnPoint._monsterType, spawnPoint.Position, spawnPoint._id);
       _units.EnemyController._enemies.AddEnemy(spawnPoint._id, enemyPrefab.GetComponent<Enemy>());

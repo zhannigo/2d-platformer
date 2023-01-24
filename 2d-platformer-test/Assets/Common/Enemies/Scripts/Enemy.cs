@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Common.Character.Scripts;
 using UnityEngine;
 
 namespace Common.Enemies.Scripts
@@ -7,14 +8,34 @@ namespace Common.Enemies.Scripts
   [RequireComponent(typeof(EnemyMovementLogic))]
   public class Enemy : MonoBehaviour
   {
+    [SerializeField] public AudioSource AttackSound;
     [SerializeField] public EnemyMovementLogic MoveController;
-    private static float _radius;
-    private static Vector2 _direction;
-    private LayerMask _playerLayer;
-    private float _distance;
-    private EnemyState _state = EnemyState.Idle;
-    public event Action <string> isEnemyDead;
+    public Animator EnemyAnimator => GetComponent<Animator>();
+
+    public event Action <Enemy, string> IsEnemyDead;
+
     public string Id { get; set; }
+
+    public float Health { get; set; }
+    public Transform HeroTrasform { get; set; }
+
+
+    public bool IsHeroTriggered
+    {
+      get => _isHeroTriggered;
+      set
+      {
+        if (value)
+        {
+          EnemyEventManager.HeroIsFounded(this);
+        }
+        else
+        {
+          EnemyEventManager.HeroisLost(this);
+        }
+        _isHeroTriggered = value;
+      }
+    }
 
     public EnemyState State
     {
@@ -22,29 +43,24 @@ namespace Common.Enemies.Scripts
       set
       {
         _state = value;
-        //isChangedState?.Invoke(this);
-        EventManager.StateIsChanged(this);
+        EnemyEventManager.StateIsChanged(this);
       }
     }
 
-    public float Health { get; set; }
-    public void HeroCheck()
-    {
-      if (Physics2D.CircleCast(transform.position, _radius, _direction, _distance, _playerLayer))
-      {
-        State = EnemyState.Attack; 
-      }
-    }
+    public int Damage = 1;
+    private EnemyState _state = EnemyState.Idle;
+    private bool _isHeroTriggered;
+    public Hero hero;
 
     public void TakeDamage(int damage)
     {
-      isEnemyDead?.Invoke(Id);
+      IsEnemyDead?.Invoke(this, Id);
       StartCoroutine(MakeAnimation());
     }
-
     private IEnumerator MakeAnimation()
     {
-      yield return new WaitForSeconds(1.5f);
+      EnemyAnimator.SetTrigger("Dead");
+      yield return new WaitForSeconds(0.5f);
       Destroy(gameObject);
     }
   }

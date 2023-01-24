@@ -6,7 +6,7 @@ namespace Common.Infrastructure.Services
 {
   public class WindowsService : MonoBehaviour
   {
-    [SerializeField] private FinishWindow _finishWindow;
+    [SerializeField] private GameObject _finishWindow;
     [SerializeField] private StartWindow _startWindow;
     private UnitService _units;
     private ITimeCounter _timeCunter;
@@ -24,7 +24,10 @@ namespace Common.Infrastructure.Services
       _startWindow.Construct(_units, _timeCunter);
     }
 
-    private void OpenFinishWindow() => 
-      _finishWindow.OpenWindow();
+    private void OpenFinishWindow()
+    {
+      GameObject window = Instantiate(_finishWindow, transform);
+      window.GetComponent<FinishWindow>().Construct(_timeCunter);
+    }
   }
 }

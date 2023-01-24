@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: HeroData
   m_EditorClassIdentifier: 
   Prefab: {fileID: 2814165125534756606, guid: 0522569e2fc69d64cbb5da4869a6e17c, type: 3}
+  MaxHp: 5

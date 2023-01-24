@@ -7,7 +7,8 @@ namespace Common.Infrastructure.UI.Elements
 {
   public class PauseButton : MonoBehaviour
   {
-    public Button _button;
+    [SerializeField] private Button _button;
+    [SerializeField] private AudioSource ButtonClickSound;
     private bool _isPaused = true;
     private ITimeCounter _timeCounter;
 
@@ -20,6 +21,7 @@ namespace Common.Infrastructure.UI.Elements
 
     private void PauseGame()
     {
+      ButtonClickSound.Play();
       _timeCounter.StopGame(_isPaused);
       _isPaused = !_isPaused;
     }

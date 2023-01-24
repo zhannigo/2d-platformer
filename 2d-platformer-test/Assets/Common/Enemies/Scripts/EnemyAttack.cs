@@ -16,7 +16,7 @@ namespace Common.Enemies.Scripts
     {
       if (other.gameObject.tag == "Player")
       {
-        other.gameObject.GetComponent<Hero>().TakeDamage(_damage);
+        other.gameObject.GetComponent<HeroController>().TakeDamage(_damage);
       }
     }
   }

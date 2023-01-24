@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3186862404793402557}
   - component: {fileID: 3186862404793402556}
   - component: {fileID: 8210212096714614201}
+  - component: {fileID: 9012783182320993203}
   m_Layer: 5
   m_Name: StartWindow
   m_TagString: Untagged
@@ -92,6 +93,104 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playButton: {fileID: 6797785664606844425}
+  ButtonClickSound: {fileID: 7618289949997490451}
+  closeWindowSound: {fileID: 9012783182320993203}
+--- !u!82 &9012783182320993203
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3186862404793402558}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 60b6d3dfc5db61449bb155302be83238, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &2229545916749099778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -99,14 +198,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3186862404793402559}
     m_Modifications:
-    - target: {fileID: 2474584709942962614, guid: a2cd33391d6a592488ca25bfc06495af, type: 3}
-      propertyPath: _windowId
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3660004047896327313, guid: a2cd33391d6a592488ca25bfc06495af, type: 3}
-      propertyPath: m_Text
-      value: PLAY
-      objectReference: {fileID: 0}
     - target: {fileID: 3660004048207636184, guid: a2cd33391d6a592488ca25bfc06495af, type: 3}
       propertyPath: m_Name
       value: PlayButton
@@ -195,9 +286,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1306169411040488938, guid: a2cd33391d6a592488ca25bfc06495af, type: 3}
-    - {fileID: 2474584709942962614, guid: a2cd33391d6a592488ca25bfc06495af, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2cd33391d6a592488ca25bfc06495af, type: 3}
 --- !u!224 &3186862403080476123 stripped
 RectTransform:
@@ -215,6 +304,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &7618289949997490451 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8595518368449548817, guid: a2cd33391d6a592488ca25bfc06495af, type: 3}
+  m_PrefabInstance: {fileID: 2229545916749099778}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9192188880851786175
 PrefabInstance:
   m_ObjectHideFlags: 0

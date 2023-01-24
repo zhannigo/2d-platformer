@@ -5,7 +5,6 @@ namespace Common.Infrastructure.Services
 {
   public abstract class InputService : IInputService
   {
-    private IInputService _inputServiceImplementation;
     protected const string Horizontal = "Horizontal";
     protected const string Vertical = "Vertical";
     private const string AttackButton = "Fire";

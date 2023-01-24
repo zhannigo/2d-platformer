@@ -10,7 +10,7 @@ namespace Common.Character.Scripts
     private static readonly int AttackHash = Animator.StringToHash("Attack");
     private static readonly int HitHash = Animator.StringToHash("Hit");
     private static readonly int DieHash = Animator.StringToHash("Die");
-    private static readonly int JumpHash = Animator.StringToHash("Jump");
+    private static readonly int JumpHash = Animator.StringToHash("Jumping");
 
     private readonly int _idleStateHash = Animator.StringToHash("Idle");
     private readonly int _attackStateHash = Animator.StringToHash("Attack");
@@ -24,24 +24,37 @@ namespace Common.Character.Scripts
 
     private Animator Animator;
     private Rigidbody2D Rigidbody;
+    private HeroSoundsManager Sounds;
+    private ColliderCheck Collider;
+
 
     private void Awake()
     {
       Animator = GetComponent<Animator>();
       Rigidbody = GetComponent<Rigidbody2D>();
+      Sounds = GetComponent<HeroSoundsManager>();
+      Collider = GetComponent<ColliderCheck>();
     }
 
     private void Update()
     {
       Animator.SetFloat(MoveHash, Mathf.Abs(Rigidbody.velocity.x), 0.1f, Time.deltaTime);
+      Animator.SetFloat(JumpHash, Rigidbody.velocity.y, 0.1f, Time.deltaTime);
+      if (Collider.isGrounded)
+      {
+        Sounds.PlaySteps(Rigidbody.velocity.x);
+      }
     }
 
     public bool IsAttacking => State == AnimatorStates.Attack;
 
     public void PlayHit() => Animator.SetTrigger(HitHash);
-    public void PlayJump() => Animator.SetTrigger(JumpHash);
 
-    public void PlayAttack() => Animator.SetTrigger(AttackHash);
+    public void PlayAttack()
+    {
+      Animator.SetTrigger(AttackHash);
+      Sounds.PlayAttack();
+    }
 
     public void PlayDeath() => Animator.SetTrigger(DieHash);
 
