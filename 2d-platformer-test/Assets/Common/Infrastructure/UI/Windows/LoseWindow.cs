@@ -1,14 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Timeline;
 using UnityEngine.UI;
-using Zenject;
 
 namespace Common.Infrastructure.UI.Windows
 {
-  public class FinishWindow : MonoBehaviour
+  public class LoseWindow : MonoBehaviour, IWindow
   {
-    [SerializeField] private Text _timer;
     [SerializeField] private Button _playButton;
     [SerializeField] private AudioSource ButtonClickSound;
 
@@ -23,15 +20,7 @@ namespace Common.Infrastructure.UI.Windows
     private void Init()
     {
       _timeCounter.StopGame(true);
-      float bestTime = _timeCounter.UpdateBestTime();
-      DisplayTime(bestTime);
       _playButton.onClick.AddListener(LoadNewGame);
-    }
-    void DisplayTime(float timeToDisplay)
-    {
-      float minutes = Mathf.FloorToInt(timeToDisplay/60);
-      float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-      _timer.text = string.Format("{0:00},{1:00}",minutes, seconds);
     }
 
     private void LoadNewGame()

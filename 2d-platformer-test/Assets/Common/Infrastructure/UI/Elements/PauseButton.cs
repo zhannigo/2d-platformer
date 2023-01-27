@@ -1,3 +1,5 @@
+using System;
+using Common.Infrastructure.Services;
 using Common.Infrastructure.UI.Windows;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,12 +11,10 @@ namespace Common.Infrastructure.UI.Elements
   {
     [SerializeField] private Button _button;
     [SerializeField] private AudioSource ButtonClickSound;
-    private bool _isPaused = true;
-    private ITimeCounter _timeCounter;
+    private WindowsService _windowService;
 
-    [Inject]
-    public void Construct(ITimeCounter timeCounter) => 
-      _timeCounter = timeCounter;
+    private void Awake() => 
+      _windowService = GetComponentInParent<WindowsService>();
 
     private void Start() => 
       _button.onClick.AddListener(PauseGame);
@@ -22,8 +22,7 @@ namespace Common.Infrastructure.UI.Elements
     private void PauseGame()
     {
       ButtonClickSound.Play();
-      _timeCounter.StopGame(_isPaused);
-      _isPaused = !_isPaused;
+      _windowService.CreateWindow(WindowId.Pause);
     }
   }
 }

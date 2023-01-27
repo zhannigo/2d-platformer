@@ -171,8 +171,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eed7d5f14094d4f97d8b58723addd91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _finishWindow: {fileID: 2165501509139442435, guid: 260953b81ce24a7499cbbbbbae0dcfc0, type: 3}
   _startWindow: {fileID: 8227376283876312307}
+  _pauseWindow: {fileID: 303148583321033254, guid: 45983d4c0e0d5fa4f96250e09f81b509, type: 3}
+  _finishWindow: {fileID: 2165501509139442435, guid: 260953b81ce24a7499cbbbbbae0dcfc0, type: 3}
+  _loseWindow: {fileID: 321917869223899786, guid: e435c743e5fdabf439abb73c1db60f7f, type: 3}
 --- !u!1 &302678420877259724
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,6 +1030,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 278391140880296214}
     m_Modifications:
+    - target: {fileID: 2242404408445092938, guid: 0d7d4e1377ee5a54a99d376697891c38, type: 3}
+      propertyPath: PauseWindow
+      value: 
+      objectReference: {fileID: 303148583321033254, guid: 45983d4c0e0d5fa4f96250e09f81b509, type: 3}
     - target: {fileID: 7778483718926357505, guid: 0d7d4e1377ee5a54a99d376697891c38, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

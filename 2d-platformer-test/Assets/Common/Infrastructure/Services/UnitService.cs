@@ -7,9 +7,10 @@ namespace Common.Infrastructure.Services
 {
   public class UnitService
   {
+    public event  Action isWin;
+    public event Action isLose;
     private HeroController _heroController;
     private EnemyController _enemyController;
-    public event Action GameIsOver;
 
     public HeroController HeroController
     {
@@ -41,12 +42,17 @@ namespace Common.Infrastructure.Services
 
     private void Subscribe()
     {
-      EnemyController._enemies.IsAllEnemyDead += Notify;
-      HeroController.IsDead += Notify;
+      EnemyController._enemies.IsAllEnemyDead += NotifyEnemiesDeath;
+      HeroController.IsDead += NotifyHeroDeath;
     }
-    
-    private void Notify() => 
-      GameIsOver?.Invoke();
 
+    private void NotifyEnemiesDeath() => 
+      isWin?.Invoke();
+
+    private void NotifyHeroDeath()
+    {
+      //GameIsOver?.Invoke();
+      isLose?.Invoke();
+    }
   }
 }
