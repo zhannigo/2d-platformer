@@ -7,11 +7,13 @@ namespace Common.Infrastructure.Data
   {
     public LootData LootData;
     public TimeData TimeData;
-
+    public KeyData KeyData;
+    
     public WorldData()
     {
       LootData = new LootData();
       TimeData = new TimeData();
+      KeyData = new KeyData();
     }
   }
 }

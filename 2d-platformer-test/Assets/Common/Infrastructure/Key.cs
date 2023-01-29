@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Common.Infrastructure.Data;
 using UnityEngine;
@@ -6,14 +5,10 @@ using Zenject;
 
 namespace Common.Infrastructure
 {
-  public class LootPiece: MonoBehaviour
+  public class Key:MonoBehaviour
   {
-    [SerializeField] private GameObject _lootObject;
-    [SerializeField] private int _lootValue;
+    [SerializeField] private GameObject _keyObject;
     [SerializeField] private AudioSource PickUpSound;
-    [SerializeField] private Animator _animator;
-
-    private static readonly int Up = Animator.StringToHash("PickUp");
     private IPersistentProgressService _progressService;
     private bool _picked;
 
@@ -36,22 +31,19 @@ namespace Common.Infrastructure
       _picked = true;
       
       UpdateWorldData();
-      HideLoot();
       PlayFx();
+      HideLoot();
       StartCoroutine(StartDestroyTime());
     }
 
     private void UpdateWorldData() => 
-      _progressService.Progress.WorldData.LootData.Add(_lootValue);
+      _progressService.Progress.WorldData.KeyData.Add(1);
 
     private void HideLoot() => 
-      _lootObject.SetActive(false);
+      _keyObject.SetActive(false);
 
-    private void PlayFx()
-    {
+    private void PlayFx() => 
       PickUpSound.Play();
-      _animator.SetBool(Up, true);
-    }
 
     private IEnumerator StartDestroyTime()
     {

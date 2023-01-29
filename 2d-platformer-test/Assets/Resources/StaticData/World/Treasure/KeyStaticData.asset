@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: KeyStaticData
   m_EditorClassIdentifier: 
   _treasureType: 3
-  Prefab: {fileID: 9026365993619891141, guid: 3231162aa6385df4c9736e795a60d518, type: 3}
+  Prefab: {fileID: 8712932553269236989, guid: 9861fd26cf4e0f6478719e7f7907b500, type: 3}
